@@ -1,20 +1,21 @@
-# Decision Tree Classifier
-from sklearn import datasets
-from sklearn import metrics
-from sklearn.tree import DecisionTreeClassifier
- 
-# load the iris datasets
-dataset = datasets.load_iris()
-# fit a CART model to the data
-model = DecisionTreeClassifier()
-model.fit(dataset.data, dataset.target)
-print(model)
-# make predictions
-expected = dataset.target
-predicted = model.predict(dataset.data)
-# summarize the fit of the model
-print "---metrics.classification_report(expected, predicted)"
-print(metrics.classification_report(expected, predicted))
-print "---metrics.confusion_matrix(expected, predicted)"
-print(metrics.confusion_matrix(expected, predicted))
-print "---:)"
+"""lol"""
+import datasets
+import utils
+import models
+
+
+def main(distribution, count):
+    """dnolul"""
+    past_days, past_values, fieldnames = datasets.btc_csv_data()
+
+    model = models.linear_regression(past_days, past_values)
+
+    future_days = [[x*distribution+past_days[-1][0]] for x in xrange(count)]
+    future_values = model.predict(future_days)
+
+    total_days = past_days + future_days
+    total_values = past_values + future_values
+
+    utils.make_graph(total_days, total_values, fieldnames[0], fieldnames[1])
+
+main(1, 200)

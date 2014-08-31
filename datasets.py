@@ -15,16 +15,16 @@ def csv_to_list(filename):
         data.append(data_row)
     data.pop()
     csv.close()
-    return data
+    return data, fieldnames
 
 
 def btc_csv_data():
     """ww"""
-    days_values = csv_to_list('btc.csv')
+    days_values, fieldnames = csv_to_list('datasets/csv/btc.csv')
     time_handler = TimeHandler(days_values[0][0])
     days = []
     values = []
     for day_val in days_values:
         days.append([time_handler.date_to_days(day_val[0])])
         values.append(float(day_val[1]))
-    return days, values
+    return days, values, fieldnames

@@ -1,14 +1,23 @@
 """utlitiez"""
 import datetime
+import matplotlib.pyplot
+
+
+def make_graph(x_values, y_values, x_label, y_label):
+    """draws a graph"""
+    matplotlib.pyplot.plot(x_values, y_values)
+    matplotlib.pyplot.xlabel(x_label)
+    matplotlib.pyplot.ylabel(y_label)
+    matplotlib.pyplot.show()
 
 
 class TimeHandler(object):
-    """wuuut"""
+    """manipulates timestamps"""
     def __init__(self, start_date):
         self.start_date = str_to_date(start_date)
 
     def date_to_days(self, date):
-        """erh"""
+        """returns date-start_date in days"""
         date = str_to_date(date)
         return (date-self.start_date).days
 
