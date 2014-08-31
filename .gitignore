@@ -1,0 +1,9 @@
+#gitignore for vim and python
+
+#vim
+*.swp
+*.swo
+*~
+
+#python
+*.pyc
